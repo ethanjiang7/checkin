@@ -1,0 +1,22 @@
+name: Keep Alive
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"   # 每月1号 00:00 UTC (北京时间 08:00)
+  workflow_dispatch:        # 支持手动触发
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Keep alive commit
+        run: |
+          date > KEEP_ALIVE
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add KEEP_ALIVE
+          git commit -m "chore: keep alive [skip ci]" || echo "Nothing to commit"
+          git push
