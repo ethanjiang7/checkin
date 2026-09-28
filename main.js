@@ -14,7 +14,7 @@ const glados = async () => {
         "cache-control": "no-cache",
         "pragma": "no-cache",
         "priority": "u=1, i",
-        'origin': 'https://glados.cloud'
+        'origin': `https://${domain}`
       }
       const action = await fetch(`https://${domain}/api/user/checkin`, {
         method: 'POST',
