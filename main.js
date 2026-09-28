@@ -8,11 +8,17 @@ const glados = async () => {
       const common = {
         'cookie': cookie,
         'referer': `https://${domain}/console/checkin`,
-        'user-agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)',
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36',
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7",
+        "cache-control": "no-cache",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        'origin': 'https://glados.cloud'
       }
       const action = await fetch(`https://${domain}/api/user/checkin`, {
         method: 'POST',
-        headers: { ...common, 'content-type': 'application/json' },
+        headers: { ...common, 'content-type': 'application/json;charset=UTF-8' },
         body: JSON.stringify({ token: domain }),
       }).then((r) => r.json())
       if (action?.code) throw new Error(action?.message)
