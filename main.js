@@ -418,7 +418,7 @@ const glados = async () => {
       }
 
       // 5. 自动兑换
-      const autoExchange = String(process.env.AUTO_EXCHANGE || 'true').toLowerCase() !== 'false'
+      const autoExchange = String(process.env.AUTO_EXCHANGE).toLowerCase() === 'true'
        console.log(`[${autoExchange}]`)
       const exchangeThreshold = Number(process.env.EXCHANGE_THRESHOLD || 500)
       if (autoExchange && currentPoints != null && currentPoints >= exchangeThreshold) {
